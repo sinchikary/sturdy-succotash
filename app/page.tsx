@@ -1,6 +1,37 @@
+"use client"
+
 import Image from "next/image";
+import { addValueToTablero, splitNumbers, separateInput, calculateROvers, readInput } from "./auxFunctions/functions";
+import { useState } from "react";
+
+
+
 
 export default function Home() {
+  const [usedCoordinates, setUsedCoordinates] = useState<number[][]>([[]]);
+  const [maxCoordinates, setMaxCoordinates] =  useState<number[]>([]);
+  const [firstLine, setFirstLine] = useState<string>("");
+  const [inputLines, setInputLines] = useState<string>("");
+  const [results, setResults] = useState<string[]>([]);
+  
+  const readHeadLine = (inputLine : string) => {
+    
+  }
+  
+  const readLines = (inputLines : string[]) => {
+  }
+  
+  const updateInput = (e : any) => {
+     setInputLines(e.target.value);
+     console.log("input:    " + inputLines);
+  }
+  
+  const start = () => {
+    console.log("strating");
+    console.log("RESTULS:  "+ calculateROvers(readInput(inputLines), 0, 0));
+    console.log("endings");
+  }
+  
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-24">
       <div className="z-10 w-full max-w-5xl items-center justify-between font-mono text-sm lg:flex">
@@ -108,6 +139,13 @@ export default function Home() {
           </p>
         </a>
       </div>
+      <textarea onChange={updateInput} value={inputLines} className="bg-gray-300 w-[500px] h-[500px] border-white border-solid">
+      </textarea>
+      <button onClick={start}>
+        review the current value
+      </button>
+      <textarea disabled value={results} className="bg-gray-300 w-[500px] h-[500px] border-white border-solid">
+      </textarea>
     </main>
   );
 }
